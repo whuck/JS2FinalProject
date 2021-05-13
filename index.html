@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Huct Pizza</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- favicon - https://realfavicongenerator.net -->
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <!--    <link rel="manifest" href="images/site.webmanifest">-->
+    <link rel="mask-icon" href="images/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="msapplication-config" content="images/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- BootstrapVue -->
+    <!--<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />-->
+    <link rel="stylesheet" href="css/app.min.css">
+<!--    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css"/>-->
+    <link rel="stylesheet" href="//unpkg.com/bootstrap@4.x/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//unpkg.com/bootstrap-vue@2.x/dist/bootstrap-vue.min.css"/>
+    <!-- fonts / icons -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Signika+Negative:700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div id="app" >
+
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <router-link to="/home">
+                <b-img src="images/logo.png" fluid class="logo" alt="Logo"></b-img>
+            </router-link>
+        </div>
+
+        <navigation :auth-user="authUser"></navigation>
+
+    </nav>
+    <!-- Page Content -->
+    <div id="content">
+        <b-navbar  toggleable="md" type="dark" variant="primary" class="justify-content-between">
+            <div>
+                <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+
+                <b-navbar-brand class="d-md-none">
+                    Bring It
+                </b-navbar-brand>
+            </div>
+
+            <div>&nbsp;</div>
+
+            <div v-if="authUser">
+                <b-img :src="authUser.photoURL" class="avatar"></b-img>
+            </div>
+
+            <div class="d-md-none col-12" >
+                <b-collapse is-nav id="nav_collapse">
+                    <navigation :auth-user="authUser"></navigation>
+                </b-collapse>
+            </div>
+
+        </b-navbar>
+
+        <!-- route outlet -->
+        <!-- component matched by the route will render here -->
+        <router-view :auth-user="authUser"></router-view>
+
+    </div>
+
+</div>
+
+<div id="footer">
+    <div>&copy; 2021 — <strong>Huck's Final Project</strong></div>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+<!--<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>-->
+<!-- Vue Libraries/Plugins -->
+<script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+<!--<script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>--> <!-- for use with realtime database -->
+<script src="https://unpkg.com/vuefire@2.0.0-alpha.20/dist/vuefire.js"></script><!-- for use with firestore -->
+
+<!-- Vue Application -->
+<script src="js/app-models.js"></script>
+<script src="js/app-components.js"></script>
+<script src="js/app-pages.js"></script>
+<script src="js/app.js"></script>
+
+
+<!-- google maps -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnYd8Yy3dCZXQfNejj9Eo5F6bboHuNyks&libraries=places&v=weekly"></script>
+</body>
+</html>
